@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "node --watch --env-file=.env src/server.js",
     "start": "node src/server.js",
-    "db:migrate": "node --env-file-if-exists=.env src/db/migrate.js"
+    "db:migrate": "node --env-file-if-exists=.env src/db/migrate.js",
+    "db:seed": "node --env-file-if-exists=.env src/db/seed.js"
   },
   "type": "module",
   "dependencies": {
