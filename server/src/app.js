@@ -8,6 +8,10 @@ import { HttpError } from "./utils/http-error.js";
 import authRoutes from "./modules/auth/auth.routes.js";
 import usersRoutes from "./modules/users/users.routes.js";
 import rolesRoutes from "./modules/roles/roles.routes.js";
+import sizeCategoriesRoutes from "./modules/size-categories/size-categories.routes.js";
+import servicesRoutes from "./modules/services/services.routes.js";
+import stationsRoutes from "./modules/stations/stations.routes.js";
+import settingsRoutes from "./modules/settings/settings.routes.js";
 
 const app = express();
 
@@ -30,6 +34,10 @@ app.get("/api/health", async (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/roles", rolesRoutes);
+app.use("/api/size-categories", sizeCategoriesRoutes);
+app.use("/api/services", servicesRoutes);
+app.use("/api/stations", stationsRoutes);
+app.use("/api/settings", settingsRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ error: { message: "Not found" } });
