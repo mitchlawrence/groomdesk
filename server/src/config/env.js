@@ -5,6 +5,10 @@ const schema = z.object({
     .enum(["development", "production", "test"])
     .default("development"),
   PORT: z.coerce.number().int().min(1).max(65535).default(3000),
+  DATABASE_URL: z
+    .string()
+    .regex(/^postgres(ql)?:\/\//, "must start with postgresql://"),
+  DB_POOL_MAX: z.coerce.number().int().min(1).max(50).default(10),
 });
 
 const parsed = schema.safeParse(process.env);

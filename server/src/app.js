@@ -1,12 +1,18 @@
 import express from "express";
+import { pool } from "./db/pool.js";
 
 const app = express();
 
 app.disable("x-powered-by");
 app.use(express.json({ limit: "100kb" }));
 
-app.get("/api/health", (req, res) => {
-  res.json({ status: "ok" });
+app.get("/api/health", async (req, res) => {
+  try {
+    await pool.query("SELECT 1");
+    res.json({ status: "ok" });
+  } catch {
+    res.status(503).json({ status: "unavailable" });
+  }
 });
 
 app.use((req, res) => {
