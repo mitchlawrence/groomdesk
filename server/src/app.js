@@ -6,6 +6,8 @@ import { env } from "./config/env.js";
 import { pool } from "./db/pool.js";
 import { HttpError } from "./utils/http-error.js";
 import authRoutes from "./modules/auth/auth.routes.js";
+import usersRoutes from "./modules/users/users.routes.js";
+import rolesRoutes from "./modules/roles/roles.routes.js";
 
 const app = express();
 
@@ -26,6 +28,8 @@ app.get("/api/health", async (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/users", usersRoutes);
+app.use("/api/roles", rolesRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ error: { message: "Not found" } });
